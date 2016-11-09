@@ -16,6 +16,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "antd": "^2.3.1",
     "react": "*",
     "react-dom": "*"
   },
