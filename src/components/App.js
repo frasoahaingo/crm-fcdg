@@ -1,12 +1,30 @@
 import React from 'react';
-import { Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, DatePicker } from 'antd';
+import { Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, DatePicker,Upload } from 'antd';
+const props = {
+  name: 'file',
+  action: '/upload.do',
+  headers: {
+    authorization: 'authorization-text',
+  },
+  onChange(info) {
+    if (info.file.status !== 'uploading') {
+      console.log(info.file, info.fileList);
+    }
+    if (info.file.status === 'done') {
+      message.success(`${info.file.name} file uploaded successfully`);
+    } else if (info.file.status === 'error') {
+      message.error(`${info.file.name} file upload failed.`);
+    }
+  },
+};
 
 const FormItem = Form.Item;
 const Option = Select.Option;
+const OptGroup = Select.OptGroup;
 
 const residences = [{
-  value: 'zhejiang',
-  label: 'Zhejiang',
+  value: 'Club d\'entreprise',
+  label: 'Club d\'entreprise',
   children: [{
     value: 'hangzhou',
     label: 'Hangzhou',
@@ -15,9 +33,21 @@ const residences = [{
       label: 'West Lake',
     }],
   }],
-}, {
-  value: 'jiangsu',
-  label: 'Jiangsu',
+},
+  {
+    value: 'Dons ponctuels',
+    label: 'Dons ponctuels',
+    children: [{
+      value: 'hangzhou',
+      label: 'Hangzhou',
+      children: [{
+        value: 'xihu',
+        label: 'West Lake',
+      }],
+    }],
+  },{
+  value: 'Legs',
+  label: 'Legs',
   children: [{
     value: 'nanjing',
     label: 'Nanjing',
@@ -26,7 +56,32 @@ const residences = [{
       label: 'Zhong Hua Men',
     }],
   }],
+  },
+    {
+      value: 'Donations en ligne',
+      label: 'Donations en ligne',
+      children: [{
+        value: 'nanjing',
+        label: 'Nanjing',
+        children: [{
+          value: 'zhonghuamen',
+          label: 'Zhong Hua Men',
+        }],
+      }],
 }];
+const options = [{
+
+    value: 'abonnement 1 an ',
+    label: 'abonnement 1 an',
+
+
+  },
+    {
+      value: 'abonnement 3 ans ',
+      label: 'abonnement 3 ans',
+
+    }
+];
 
 class App extends React.Component {
 
@@ -53,6 +108,7 @@ class App extends React.Component {
       rules: [{ type: 'object', required: true, message: 'Please select time!' }],
     };
     return (
+
       <Form horizontal onSubmit={this.handleSubmit}>
         <div className="form-bloc">
           <Row>
@@ -104,6 +160,16 @@ class App extends React.Component {
               </FormItem>
               <FormItem
                 {...formItemLayout}
+                label="Phone Number"
+              >
+                {getFieldDecorator('phone', {
+                  rules: [{ required: false, message: 'Please input your phone number!' }],
+                })(
+                  <Input addonBefore={prefixSelector}/>
+                )}
+              </FormItem>
+              <FormItem
+                {...formItemLayout}
                 label="Pays"
                 hasFeedback
               >
@@ -128,7 +194,7 @@ class App extends React.Component {
               </FormItem>
               <FormItem
                 {...formItemLayout}
-                label="DatePicker"
+                label="Date d'enregistrement"
               >
                 {getFieldDecorator('date-picker', config)(
                   <DatePicker format="YYYY-MM-DD HH:mm:ss"/>
@@ -138,25 +204,47 @@ class App extends React.Component {
           </Row>
         </div>
         <FormItem
-          {...formItemLayout}
-          label="Habitual Residence"
-        >
-          {getFieldDecorator('residence', {
-            initialValue: ['zhejiang', 'hangzhou', 'xihu'],
-            rules: [{ type: 'array', required: true, message: 'Please select your habitual residence!' }],
-          })(
-            <Cascader options={residences}/>
-          )}
-        </FormItem>
+        {...formItemLayout}
+        label="Mécénat"
+      >
+        <Cascader options={residences}/>
+
+      </FormItem>
         <FormItem
           {...formItemLayout}
-          label="Phone Number"
+          label="Revue espoir"
         >
-          {getFieldDecorator('phone', {
-            rules: [{ required: true, message: 'Please input your phone number!' }],
-          })(
-            <Input addonBefore={prefixSelector}/>
-          )}
+          <Cascader options={options}/>
+
+        </FormItem>
+        <FormItem {...tailFormItemLayout} style={{ marginBottom: 8 }}>
+
+          <Checkbox>Personnel de la Fondation</Checkbox>
+
+        </FormItem>
+        <FormItem {...tailFormItemLayout} style={{ marginBottom: 8 }}>
+
+          <Checkbox>Membre de la convention</Checkbox>
+
+        </FormItem>
+        <FormItem {...tailFormItemLayout} style={{ marginBottom: 8 }}>
+
+          <Checkbox>Conseil Scientifique</Checkbox>
+
+        </FormItem>
+        <FormItem {...tailFormItemLayout} style={{ marginBottom: 8 }}>
+
+          <Checkbox>Amis</Checkbox>
+
+        </FormItem>
+
+
+        <FormItem {...tailFormItemLayout} style={{ marginBottom: 8 }}>
+          <Upload {...props}>
+            <Button type="ghost">
+              <Icon type="upload" /> Cliquer pour télécharger un document
+            </Button>
+          </Upload>
         </FormItem>
         <FormItem
           {...formItemLayout}
@@ -164,19 +252,16 @@ class App extends React.Component {
         >
           <Input type="textarea" rows={4}/>
         </FormItem>
-        <FormItem {...tailFormItemLayout} style={{ marginBottom: 8 }}>
-          {getFieldDecorator('agreement', {
-            valuePropName: 'checked',
-          })(
-            <Checkbox>I had read the <a>agreement</a></Checkbox>
-          )}
-        </FormItem>
+
+
         <FormItem {...tailFormItemLayout}>
-          <Button type="primary" htmlType="submit" size="large">Register</Button>
+          <Button type="primary" htmlType="submit" size="large">Enregistrer</Button>
         </FormItem>
 
       </Form>
+
     );
+
   }
 }
 
