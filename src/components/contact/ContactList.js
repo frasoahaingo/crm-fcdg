@@ -5,19 +5,21 @@ import { getAllContacts } from '../../store/reducers';
 
 class ContactList extends React.Component {
   render () {
-
     const { contacts } = this.props;
 
     return (
-      <ul>
-        {contacts.map(contact => (
-          <li key={contact.id}>
-            Nom: { contact.lastName},
-            Prénom: { contact.firstName},
-            <Link to={`/contacts/edit/${contact.id}`}>modifier</Link>
-          </li>
-        ))}
-      </ul>
+      <div>
+        <ul>
+          {contacts.map(contact => (
+            <li key={contact.id}>
+              <strong>Nom: </strong>{contact.lastName},
+              <strong>Prénom: </strong>{contact.firstName},
+              <Link to={`/contacts/edit/${contact.id}`}>modifier</Link>
+            </li>
+          ))}
+        </ul>
+        <Link to="/contacts/add">ajouter</Link>
+      </div>
     )
   }
 }

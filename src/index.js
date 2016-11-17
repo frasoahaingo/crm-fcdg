@@ -9,6 +9,7 @@ import configureStore from './store';
 import App from './components/App';
 import Home from './components/Home';
 import Contacts from './components/contact';
+import ContactDetails from './components/contact/ContactDetails';
 import ContactForm from './components/contact/ContactForm';
 import ContactList from './components/contact/ContactList';
 
@@ -27,6 +28,7 @@ ReactDOM.render(
             <IndexRoute component={ContactList}/>
             <Route path="add" component={ContactForm}/>
             <Route path="edit/:contactId" component={ContactForm}/>
+            <Route path="show/:contactId" component={ContactDetails}/>
           </Route>
         </Route>
       </Router>

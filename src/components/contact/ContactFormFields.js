@@ -19,6 +19,7 @@ class ContactFormFields extends React.Component {
 
   handleOnSubmit = (e) => {
     e.preventDefault();
+
     this.props.form.validateFields((err, values) => {
       if (!err) {
         this.props.onSubmit(values);
@@ -61,14 +62,12 @@ class ContactFormFields extends React.Component {
 }
 
 export default Form.create({
-  mapPropsToFields({ contact }) {
-    return {
-      firstName: {
-        value: contact && contact.firstName
-      },
-      lastName: {
-        value: contact && contact.lastName
-      }
-    };
-  },
+  mapPropsToFields: ({ contact }) => ({
+    firstName: {
+      value: contact && contact.firstName
+    },
+    lastName: {
+      value: contact && contact.lastName
+    }
+  }),
 })(ContactFormFields);

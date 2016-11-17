@@ -15,7 +15,7 @@ class ContactForm extends React.Component {
         ...values,
       }));
     } else {
-      dispatch(addContact(values))
+      dispatch(addContact(values));
     }
   };
 
