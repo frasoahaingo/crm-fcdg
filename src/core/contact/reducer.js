@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux';
+import * as actions from './actions';
 
 const contact = (state, action) => {
   switch(action.type) {
-    case 'ADD_CONTACT':
-    case 'UPDATE_CONTACT':
+    case actions.ADD_CONTACT:
+    case actions.UPDATE_CONTACT:
       return {
         id: action.payload.id,
         firstName: action.payload.firstName,
@@ -16,8 +17,8 @@ const contact = (state, action) => {
 
 const byId = (state = {}, action) => {
   switch(action.type) {
-    case 'ADD_CONTACT':
-    case 'UPDATE_CONTACT':
+    case actions.ADD_CONTACT:
+    case actions.UPDATE_CONTACT:
       return {
         ...state,
         [action.payload.id]: contact(state[action.payload.id], action)
@@ -29,7 +30,7 @@ const byId = (state = {}, action) => {
 
 const allIds = (state = [], action) => {
   switch(action.type) {
-    case 'ADD_CONTACT':
+    case actions.ADD_CONTACT:
       return [
         ...state,
         action.payload.id

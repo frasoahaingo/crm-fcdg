@@ -1,5 +1,8 @@
+export const ADD_CONTACT = 'ADD_CONTACT';
+export const UPDATE_CONTACT = 'UPDATE_CONTACT';
+
 export const addContact = ({ firstName, lastName }) => ({
-  type: 'ADD_CONTACT',
+  type: ADD_CONTACT,
   payload: {
     id: parseInt(Math.random() * 10000, 10),
     firstName,
@@ -8,7 +11,7 @@ export const addContact = ({ firstName, lastName }) => ({
 });
 
 export const updateContact = ({ id, firstName, lastName }) => ({
-  type: 'UPDATE_CONTACT',
+  type: UPDATE_CONTACT,
   payload: {
     id, firstName, lastName
   }
