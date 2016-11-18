@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getContactById } from '../../store/reducers';
-import { addContact, updateContact } from '../../store/actions';
+import * as selectors from '../../store/selectors';
+import * as contactActions from '../../core/contact/actions';
 import ContactFormFields from './ContactFormFields';
 
 class ContactForm extends React.Component {
@@ -10,12 +10,12 @@ class ContactForm extends React.Component {
     const { dispatch, contact } = this.props;
 
     if(!!contact) {
-      dispatch(updateContact({
+      dispatch(contactActions.updateContact({
         ...contact,
         ...values,
       }));
     } else {
-      dispatch(addContact(values));
+      dispatch(contactActions.addContact(values));
     }
   };
 
@@ -32,6 +32,6 @@ class ContactForm extends React.Component {
 
 export default connect(
   (state, props) => ({
-    contact: getContactById(props.params.contactId, state)
+    contact: selectors.getContactById(props.params.contactId, state)
   })
 )(ContactForm);

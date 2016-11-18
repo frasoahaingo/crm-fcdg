@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import { getContactById } from '../../store/reducers';
+import * as selectors from '../../store/selectors';
 
 class ContactDetails extends React.Component {
 
@@ -19,6 +19,6 @@ class ContactDetails extends React.Component {
 
 export default connect(
   (state, props) => ({
-    contact: getContactById(props.params.contactId, state)
+    contact: selectors.getContactById(props.params.contactId, state)
   })
 )(ContactDetails);

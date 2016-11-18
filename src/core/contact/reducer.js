@@ -1,5 +1,18 @@
 import { combineReducers } from 'redux';
-import contact from './contact';
+
+const contact = (state, action) => {
+  switch(action.type) {
+    case 'ADD_CONTACT':
+    case 'UPDATE_CONTACT':
+      return {
+        id: action.payload.id,
+        firstName: action.payload.firstName,
+        lastName: action.payload.lastName,
+      };
+    default:
+      return state;
+  }
+};
 
 const byId = (state = {}, action) => {
   switch(action.type) {
@@ -32,14 +45,3 @@ const contacts = combineReducers({
 });
 
 export default contacts;
-
-const getAllContacts = (state) =>
-  state.allIds.map(id => state.byId[id]);
-
-const getContactById = (contactId, state) =>
-  state.byId[contactId];
-
-export {
-  getAllContacts,
-  getContactById,
-};

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import { getAllContacts } from '../../store/reducers';
+import * as selectors from '../../store/selectors';
 
 class ContactList extends React.Component {
   render () {
@@ -12,7 +12,7 @@ class ContactList extends React.Component {
         <ul>
           {contacts.map(contact => (
             <li key={contact.id}>
-              <strong>Nom: </strong>{contact.lastName},
+              <strong>Nom: </strong><Link to={`/contacts/show/${contact.id}`}>{contact.lastName}</Link>,
               <strong>Prénom: </strong>{contact.firstName},
               <Link to={`/contacts/edit/${contact.id}`}>modifier</Link>
             </li>
@@ -26,6 +26,6 @@ class ContactList extends React.Component {
 
 export default connect(
   state => ({
-    contacts: getAllContacts(state)
+    contacts: selectors.getAllContacts(state)
   })
 )(ContactList);
