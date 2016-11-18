@@ -1,5 +1,22 @@
-export const getAllContacts = (state) =>
-  state.allIds.map(id => state.byId[id]);
+import _ from 'lodash/fp';
+import { createSelector } from 'reselect';
 
-export const getContactById = (contactId, state) =>
-  state.byId[contactId];
+export const getAllContacts = createSelector(
+  // getters
+  _.get('byId'),
+  _.get('allIds'),
+
+  // callback
+  (byId, allIds) => _.map(id => byId[id])(allIds)
+);
+
+const getContactId = (state, id) => id;
+
+export const getContactById = createSelector(
+  // getters
+  _.get('byId'),
+  getContactId,
+
+  // callback
+  (byId, id) => byId[id]
+);

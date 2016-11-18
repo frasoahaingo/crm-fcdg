@@ -32,6 +32,6 @@ class ContactForm extends React.Component {
 
 export default connect(
   (state, props) => ({
-    contact: selectors.getContactById(props.params.contactId, state)
+    contact: selectors.getContactById(state, props)
   })
 )(ContactForm);
