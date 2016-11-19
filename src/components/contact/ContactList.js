@@ -2,8 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import * as selectors from '../../store/selectors';
+import * as contactActions from '../../core/contact/actions';
 
 class ContactList extends React.Component {
+
+  componentDidMount () {
+    this.props.dispatch(contactActions.loadContacts());
+  }
+
   render () {
     const { contacts } = this.props;
 

@@ -1,27 +1,15 @@
+
 import { combineReducers } from 'redux';
 import * as actions from './actions';
 
-const contact = (state, action) => {
-  switch(action.type) {
-    case actions.ADD_CONTACT:
-    case actions.UPDATE_CONTACT:
-      return {
-        id: action.payload.id,
-        firstName: action.payload.firstName,
-        lastName: action.payload.lastName,
-      };
-    default:
-      return state;
-  }
-};
-
 const byId = (state = {}, action) => {
   switch(action.type) {
-    case actions.ADD_CONTACT:
-    case actions.UPDATE_CONTACT:
+    case actions.LOAD_CONTACTS_SUCCESS:
+    case actions.ADD_CONTACT_SUCCESS:
+    case actions.UPDATE_CONTACT_SUCCESS:
       return {
         ...state,
-        [action.payload.id]: contact(state[action.payload.id], action)
+        ...action.payload.entities.contacts,
       };
     default:
       return state;
@@ -29,11 +17,17 @@ const byId = (state = {}, action) => {
 };
 
 const allIds = (state = [], action) => {
+  console.log(action.type, action.payload);
   switch(action.type) {
-    case actions.ADD_CONTACT:
+    case actions.LOAD_CONTACTS_SUCCESS:
       return [
         ...state,
-        action.payload.id
+        ...action.payload.result,
+      ];
+    case actions.ADD_CONTACT_SUCCESS:
+      return [
+        ...state,
+        action.payload.result
       ];
     default:
       return state;

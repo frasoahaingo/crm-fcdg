@@ -10,10 +10,11 @@ class ContactForm extends React.Component {
     const { dispatch, contact } = this.props;
 
     if(!!contact) {
-      dispatch(contactActions.updateContact({
+      const updatedContact = {
         ...contact,
         ...values,
-      }));
+      };
+      dispatch(contactActions.updateContact(updatedContact));
     } else {
       dispatch(contactActions.addContact(values));
     }

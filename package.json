@@ -17,8 +17,11 @@
   "license": "MIT",
   "dependencies": {
     "antd": "^2.3.1",
+    "firebase": "^3.6.1",
+    "immutable": "^3.8.1",
     "lodash": "^4.17.2",
     "normalizr": "^2.2.1",
+    "normalizr-immutable": "0.0.3",
     "rc-editor-core": "0.5.9",
     "react": "^15.4.0",
     "react-dom": "*",
