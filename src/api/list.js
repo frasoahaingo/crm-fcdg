@@ -1,9 +1,8 @@
 import { firebaseDb } from './firebase';
 
 export class FirebaseList {
-  constructor(actions, modelClass) {
+  constructor(actions) {
     this._actions = actions;
-    this._modelClass = modelClass;
   }
 
   get path() {

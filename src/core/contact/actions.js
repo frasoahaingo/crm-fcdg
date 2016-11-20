@@ -1,17 +1,24 @@
 import { normalize, arrayOf } from 'normalizr';
 import schemas from '../schemas';
 
+export const LOAD_CONTACT = 'LOAD_CONTACT';
+export const LOAD_CONTACT_SUCCESS = 'LOAD_CONTACT_SUCCESS';
+
+export const loadContact = id => ({
+  type: LOAD_CONTACT,
+  payload: id
+});
+
+export const loadContactSuccess = contact => ({
+  type: LOAD_CONTACT_SUCCESS,
+  payload: contact
+});
+
 export const LOAD_CONTACTS = 'LOAD_CONTACTS';
-export const LOAD_CONTACTS_FAILED = 'LOAD_CONTACTS_FAILED';
 export const LOAD_CONTACTS_SUCCESS = 'LOAD_CONTACTS_SUCCESS';
 
 export const loadContacts = () => ({
   type: LOAD_CONTACTS
-});
-
-export const loadContactsFailed = (error) => ({
-  type: LOAD_CONTACTS_FAILED,
-  payload: error
 });
 
 export const loadContactsSuccess = (contacts) => {
@@ -57,4 +64,22 @@ export const updateContactFailed = error => ({
 export const updateContactSuccess = contact => ({
   type: UPDATE_CONTACT_SUCCESS,
   payload: normalize(contact, schemas.contact)
+});
+
+export const REMOVE_CONTACT = 'REMOVE_CONTACT';
+export const REMOVE_CONTACT_FAILED = 'REMOVE_CONTACT_FAILED';
+export const REMOVE_CONTACT_SUCCESS = 'REMOVE_CONTACT_SUCCESS';
+
+export const removeContact = id => ({
+  type: REMOVE_CONTACT,
+  payload: id
+});
+
+export const removeContactFailed = error => ({
+  type: REMOVE_CONTACT_FAILED,
+  payload: error
+});
+
+export const removeContactSuccess = () => ({
+  type: REMOVE_CONTACT_SUCCESS
 });

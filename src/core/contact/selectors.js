@@ -7,7 +7,7 @@ export const getAllContacts = createSelector(
   _.get('allIds'),
 
   // callback
-  (byId, allIds) => _.map(id => byId[id])(allIds)
+  (byId, allIds) => allIds.map(id => byId.get(id))
 );
 
 const getContactId = (state, id) => id;
@@ -18,5 +18,5 @@ export const getContactById = createSelector(
   getContactId,
 
   // callback
-  (byId, id) => byId[id]
+  (byId, id) => byId.get(id)
 );

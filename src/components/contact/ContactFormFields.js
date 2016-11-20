@@ -64,10 +64,10 @@ class ContactFormFields extends React.Component {
 export default Form.create({
   mapPropsToFields: ({ contact }) => ({
     firstName: {
-      value: contact && contact.firstName
+      value: contact && contact.get('firstName')
     },
     lastName: {
-      value: contact && contact.lastName
+      value: contact && contact.get('lastName')
     }
   }),
 })(ContactFormFields);

@@ -7,7 +7,14 @@ import * as contactActions from '../../core/contact/actions';
 class ContactList extends React.Component {
 
   componentDidMount () {
-    this.props.dispatch(contactActions.loadContacts());
+    if(this.props.contacts.size === 0) {
+      this.props.dispatch(contactActions.loadContacts());
+    }
+  }
+
+  removeContact (id, e) {
+    e.preventDefault();
+    this.props.dispatch(contactActions.removeContact(id));
   }
 
   render () {
@@ -17,10 +24,11 @@ class ContactList extends React.Component {
       <div>
         <ul>
           {contacts.map(contact => (
-            <li key={contact.id}>
-              <strong>Nom: </strong><Link to={`/contacts/show/${contact.id}`}>{contact.lastName}</Link>,
-              <strong>Prénom: </strong>{contact.firstName},
-              <Link to={`/contacts/edit/${contact.id}`}>modifier</Link>
+            <li key={contact.get('id')}>
+              <strong>Nom: </strong><Link to={`/contacts/show/${contact.get('id')}`}>{contact.get('lastName')}</Link>,
+              <strong>Prénom: </strong>{contact.get('firstName')},
+              <Link to={`/contacts/edit/${contact.get('id')}`}>modifier</Link> -
+              <button onClick={this.removeContact.bind(this, contact.get('id'))}>supprimer</button>
             </li>
           ))}
         </ul>
