@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form, Input, Row, Col, Button } from 'antd';
+import ContactModel from '../../core/contact/model';
 
 const FormItem = Form.Item;
 
@@ -35,21 +36,11 @@ class ContactFormFields extends React.Component {
       <Form horizontal onSubmit={this.handleOnSubmit}>
         <Row>
           <Col span={12}>
-            <FormItem {...formItemLayout} label="Nom">
-              {getFieldDecorator(
-                'firstName',
-                {
-                  rules: [{ required: true, message: 'Champ obligatoire!' }]
-                }
-              )(<Input />)}
+            <FormItem {...formItemLayout} label={ContactModel.getFieldLabel('firstName')}>
+              {getFieldDecorator(...ContactModel.getFieldDecorator('firstName'))(<Input />)}
             </FormItem>
-            <FormItem {...formItemLayout} label="Prénom">
-              {getFieldDecorator(
-                'lastName',
-                {
-                  rules: [{ required: true, message: 'Champ obligatoire!' }]
-                }
-              )(<Input />)}
+            <FormItem {...formItemLayout} label={ContactModel.getFieldLabel('lastName')}>
+              {getFieldDecorator(...ContactModel.getFieldDecorator('lastName'))(<Input />)}
             </FormItem>
           </Col>
         </Row>
@@ -62,12 +53,5 @@ class ContactFormFields extends React.Component {
 }
 
 export default Form.create({
-  mapPropsToFields: ({ contact }) => ({
-    firstName: {
-      value: contact && contact.get('firstName')
-    },
-    lastName: {
-      value: contact && contact.get('lastName')
-    }
-  }),
+  mapPropsToFields: ({ contact }) => ContactModel.mapFieldValues(contact),
 })(ContactFormFields);
