@@ -4,6 +4,7 @@ import * as actions from './actions';
 const reducer = (state = new Map(), { type, payload }) => {
   switch (type) {
 
+    case actions.SET_CURRENT_USER:
     case actions.LOGIN_SUCCESS:
       return state.merge(payload);
 
