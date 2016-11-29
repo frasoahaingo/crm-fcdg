@@ -6,17 +6,24 @@ import Header from './Header';
 
 import Home from './Home';
 import Contacts from './contact';
+import Login from './auth/Login';
+import MatchUnAuthorised from './auth/MatchUnAuthorised';
 
 class App extends React.Component {
   render () {
     return (
-      <div>
+      <div className="app">
         <DevTools/>
-        <Header/>
 
-        <Match pattern={'/'} exactly component={Home} />
-        <Match pattern={'/contacts'} component={Contacts} />
+        <div className="app__header">
+          <Header/>
+        </div>
 
+        <div className="app__body">
+          <MatchUnAuthorised pattern={'/'} exactly component={Home}/>
+          <MatchUnAuthorised pattern={'/contacts'} component={Contacts}/>
+          <Match pattern={'/login'} component={Login}/>
+        </div>
       </div>
     );
   }

@@ -4,6 +4,36 @@ body {
   background-color: $color;
 }
 
+.app {
+  background: #f2f3f6;
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+
+  &__header {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 50px;
+    z-index: 2;
+  }
+
+  &__body {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: scroll;
+  }
+}
+
 .form-bloc {
   padding: 24px;
   background: #fbfbfb;
@@ -30,4 +60,23 @@ body {
 
   }
 
+}
+
+.login-form {
+  max-width: 300px;
+  background: #fff;
+  border: 1px solid rgba(#000, .1);
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(#000, .05);
+  padding: 20px 20px 0px;
+  margin-top: -50px;
+
+  &__forgot {
+    float: right;
+  }
+
+  &__button {
+    display: block;
+    width: 100%;
+  }
 }
