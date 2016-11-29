@@ -26,6 +26,16 @@ class ContactModel {
     ];
   }
 
+  getFieldColumn (fieldName, options) {
+    const label = this.fields[fieldName].label;
+    return {
+      title: label,
+      dataIndex: fieldName,
+      key: fieldName,
+      ...options,
+    };
+  }
+
   mapFieldValues (values) {
     const map = _mapValues((field, fieldName) => ({
       value: values && values.get(fieldName)

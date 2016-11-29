@@ -3,10 +3,31 @@ $color: blank;
 body {
   background-color: $color;
 }
+
 .form-bloc {
   padding: 24px;
   background: #fbfbfb;
   border: 1px solid #d9d9d9;
   border-radius: 6px;
   margin-bottom : 15px;
+}
+
+.btn {
+
+  &--action {
+    margin-left: 5px;
+  }
+
+}
+
+.table {
+
+  &__col {
+
+    &--align-right {
+      text-align: right;
+    }
+
+  }
+
 }

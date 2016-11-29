@@ -1,6 +1,6 @@
-import { browserHistory as history } from 'react-router';
 import { eventChannel } from 'redux-saga';
 import { call, fork, put, take } from 'redux-saga/effects';
+import { push } from 'react-router-redux';
 import * as actions from './actions';
 import { contactList } from './api';
 
@@ -41,7 +41,7 @@ function* watchAddContact () {
     const contactToAdd = yield take(actions.ADD_CONTACT);
     yield fork(addContact, contactToAdd.payload);
     const addedContact = yield take(actions.ADD_CONTACT_SUCCESS);
-    yield history.push(`/contacts/show/${addedContact.payload.result}`);
+    yield put(push(`/contacts/show/${addedContact.payload.result}`));
   }
 }
 
@@ -57,7 +57,7 @@ function* watchRemoveContact () {
     let { payload } = yield take(actions.REMOVE_CONTACT);
     yield fork(removeContact, payload);
     yield take(actions.REMOVE_CONTACT_SUCCESS);
-    yield history.push(`/contacts`);
+    yield put(push(`/contacts`));
   }
 }
 
