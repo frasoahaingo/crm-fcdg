@@ -13,7 +13,7 @@ class Header extends React.Component {
     const { auth } = this.props;
 
     return (
-      <header>
+      <header className={`header ${auth.get('uid') ? 'header--connected' : ''}`}>
         <span>CRM</span> -
         <Link to="/">Home</Link> -
         <Link to="/contacts">Contacts</Link>

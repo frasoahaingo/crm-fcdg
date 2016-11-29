@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { Match } from 'react-router';
 
 import DevTools from './DevTools';
@@ -30,4 +29,4 @@ class App extends React.Component {
   }
 }
 
-export default connect()(App);
+export default App;

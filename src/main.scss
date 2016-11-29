@@ -34,6 +34,23 @@ body {
   }
 }
 
+.header {
+  background: #fff;
+  box-shadow: 0 0 5px rgba(#000, .05);
+  border-bottom: 1px solid rgba(#000, .1);
+  height: 50px;
+  line-height: 50px;
+  padding: 0 10px;
+  transform: translate3d(0, -50px, 0);
+  transition: .5s transform;
+  transition-timing-function: cubic-bezier(.54, .01, 0, 1);
+
+  &--connected {
+    transform: translate3d(0, 0, 0);
+  }
+
+}
+
 .form-bloc {
   padding: 24px;
   background: #fbfbfb;
