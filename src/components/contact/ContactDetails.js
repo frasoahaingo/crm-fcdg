@@ -18,6 +18,7 @@ class ContactDetails extends React.Component {
       <div>
         <strong>Nom: </strong>{contact.get('lastName')}<br/>
         <strong>Prénom: </strong>{contact.get('firstName')}<br/>
+        <strong>Adresse: </strong>{contact.get('address')}<br/>
         <Link to={`/contacts/edit/${contact.get('id')}`}>éditer</Link>
       </div>
     );

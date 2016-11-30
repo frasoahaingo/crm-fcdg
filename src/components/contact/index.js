@@ -11,7 +11,7 @@ class Contact extends React.Component {
     const { pathname } = this.props;
 
     return (
-      <div>
+      <div className="page page--contacts">
         <h1>Contact</h1>
 
         <Match pattern={pathname} exactly component={ContactList} />

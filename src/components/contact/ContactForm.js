@@ -11,7 +11,7 @@ class ContactForm extends React.Component {
 
     if(!!contact) {
       const updatedContact = {
-        ...contact,
+        ...contact.toJS(),
         ...values,
       };
       dispatch(contactActions.updateContact(updatedContact));

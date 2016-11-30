@@ -10,16 +10,18 @@ class Header extends React.Component {
   };
 
   render () {
-    const { auth } = this.props;
+    const { auth, app } = this.props;
 
     return (
       <header className={`header ${auth.get('uid') ? 'header--connected' : ''}`}>
-        <span>CRM</span> -
-        <Link to="/">Home</Link> -
-        <Link to="/contacts">Contacts</Link>
+        <div className="header__left">
+          <span className="header__logo">CRM {app.get('isConnected') ? '' : '(offline)'}</span>
+          <Link to="/">Home</Link>
+          <Link to="/contacts">Contacts</Link>
+        </div>
         {auth.get('uid') && (
-          <span>
-            <span> - {auth.get('email')} - </span>
+          <span className="header__right">
+            <span>{auth.get('email')}</span>
             <a href="#" onClick={this.logout}>Logout</a>
           </span>
         )}
@@ -31,5 +33,6 @@ class Header extends React.Component {
 export default connect(
   state => ({
     auth: state.auth,
+    app: state.app,
   })
 )(Header);

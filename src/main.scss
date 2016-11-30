@@ -25,19 +25,34 @@ body {
     right: 0;
     left: 0;
     bottom: 0;
+    padding: 30px;
     z-index: 1;
+  }
+}
 
+.page {
+
+  height: calc(100% - 40px);
+  padding: 20px;
+
+  &--contacts {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(#000, .05);
+  }
+
+  &--login {
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: scroll;
   }
+
 }
 
 .header {
   background: #fff;
   box-shadow: 0 0 5px rgba(#000, .05);
-  border-bottom: 1px solid rgba(#000, .1);
   height: 50px;
   line-height: 50px;
   padding: 0 10px;
@@ -49,6 +64,27 @@ body {
     transform: translate3d(0, 0, 0);
   }
 
+  &__left {
+    float: left;
+
+    & > * {
+      margin-right: 15px;
+    }
+  }
+
+  &__right {
+    float: right;
+
+    & > * {
+      margin-left: 15px;
+    }
+  }
+
+  &__logo {
+    font-size: 14px;
+    font-weight: bold;
+  }
+
 }
 
 .form-bloc {
@@ -56,7 +92,7 @@ body {
   background: #fbfbfb;
   border: 1px solid #d9d9d9;
   border-radius: 6px;
-  margin-bottom : 15px;
+  margin-bottom: 15px;
 }
 
 .btn {
@@ -82,7 +118,6 @@ body {
 .login-form {
   max-width: 300px;
   background: #fff;
-  border: 1px solid rgba(#000, .1);
   border-radius: 10px;
   box-shadow: 0 0 5px rgba(#000, .05);
   padding: 20px 20px 0px;

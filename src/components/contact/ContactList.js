@@ -53,15 +53,18 @@ class ContactList extends React.Component {
     const columns = [
       ContactModel.getFieldColumn('firstName'),
       ContactModel.getFieldColumn('lastName'),
+      ContactModel.getFieldColumn('address'),
       actions,
     ];
 
     return (
       <div>
-        <Table columns={columns} dataSource={data} pagination={pagination} />
-        <Link to="/contacts/add">
-          <Button type="ghost" icon="plus-circle-o">Ajouter un contact</Button>
-        </Link>
+        <div style={{ margin: '20px 0', textAlign: 'right' }}>
+          <Link to="/contacts/add">
+            <Button type="ghost" icon="plus-circle-o">Ajouter un contact</Button>
+          </Link>
+        </div>
+        <Table columns={columns} dataSource={data} pagination={pagination} scroll={{ y: 240 }}/>
       </div>
     )
   }

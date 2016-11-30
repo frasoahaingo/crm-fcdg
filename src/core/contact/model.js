@@ -12,6 +12,10 @@ class ContactModel {
       label: 'Nom',
       rules: [{ required: true, message: 'Champ obligatoire!' }],
     },
+    address: {
+      label: 'Adresse',
+      rules: [{ required: true, message: 'Champ obligatoire!' }],
+    },
   };
 
   getFieldLabel(fieldName) {

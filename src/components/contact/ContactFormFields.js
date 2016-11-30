@@ -42,6 +42,9 @@ class ContactFormFields extends React.Component {
             <FormItem {...formItemLayout} label={ContactModel.getFieldLabel('lastName')}>
               {getFieldDecorator(...ContactModel.getFieldDecorator('lastName'))(<Input />)}
             </FormItem>
+            <FormItem {...formItemLayout} label={ContactModel.getFieldLabel('address')}>
+              {getFieldDecorator(...ContactModel.getFieldDecorator('address'))(<Input />)}
+            </FormItem>
           </Col>
         </Row>
         <FormItem {...tailFormItemLayout}>

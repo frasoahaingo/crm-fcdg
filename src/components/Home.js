@@ -3,7 +3,9 @@ import React from 'react';
 class Home extends React.Component {
   render () {
     return (
-      <h1>Bienvenue</h1>
+      <div className="page page--home">
+        <h1>Bienvenue</h1>
+      </div>
     );
   }
 }

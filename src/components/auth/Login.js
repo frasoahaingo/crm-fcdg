@@ -25,34 +25,36 @@ class Login extends React.Component {
     const { getFieldDecorator } = this.props.form;
 
     return (
-      <Form onSubmit={this.handleSubmit} className="login-form">
-        <FormItem>
-          {getFieldDecorator('email', {
-            rules: [{ required: true, message: 'Please input your email!' }],
-          })(
-            <Input addonBefore={<Icon type="user"/>} placeholder="Username"/>
-          )}
-        </FormItem>
-        <FormItem>
-          {getFieldDecorator('password', {
-            rules: [{ required: true, message: 'Please input your Password!' }],
-          })(
-            <Input addonBefore={<Icon type="lock"/>} type="password" placeholder="Password"/>
-          )}
-        </FormItem>
-        <FormItem>
-          {getFieldDecorator('remember', {
-            valuePropName: 'checked',
-            initialValue: true,
-          })(
-            <Checkbox>Remember me</Checkbox>
-          )}
-          <a className="login-form__forgot">Forgot password</a>
-          <Button type="primary" htmlType="submit" className="login-form__button">
-            Log in
-          </Button>
-        </FormItem>
-      </Form>
+      <div className="page page--login">
+        <Form onSubmit={this.handleSubmit} className="login-form">
+          <FormItem>
+            {getFieldDecorator('email', {
+              rules: [{ required: true, message: 'Please input your email!' }],
+            })(
+              <Input addonBefore={<Icon type="user"/>} placeholder="Username"/>
+            )}
+          </FormItem>
+          <FormItem>
+            {getFieldDecorator('password', {
+              rules: [{ required: true, message: 'Please input your Password!' }],
+            })(
+              <Input addonBefore={<Icon type="lock"/>} type="password" placeholder="Password"/>
+            )}
+          </FormItem>
+          <FormItem>
+            {getFieldDecorator('remember', {
+              valuePropName: 'checked',
+              initialValue: true,
+            })(
+              <Checkbox>Remember me</Checkbox>
+            )}
+            <a className="login-form__forgot">Forgot password</a>
+            <Button type="primary" htmlType="submit" className="login-form__button">
+              Log in
+            </Button>
+          </FormItem>
+        </Form>
+      </div>
     );
   }
 }
