@@ -1,4 +1,3 @@
-import _ from 'lodash/fp';
 import { combineReducers } from 'redux';
 import { List, Record, Map } from 'immutable';
 import * as actions from './actions';

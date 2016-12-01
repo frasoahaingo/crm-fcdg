@@ -28,7 +28,6 @@ class ContactList extends React.Component {
 
     const actions = {
       title: 'Action',
-      key: 'action',
       className: 'table__col table__col--align-right',
       render: (text, record) => (
         <span>
